@@ -1,0 +1,9 @@
+Extract the following fields from the invoice text as JSON:
+invoice_number, invoice_date, seller_gstin, buyer_gstin, hsn_codes, taxable_value, cgst, sgst, igst, total.
+Return only valid JSON.
+
+Invoice text:
+TAX INVOICE  No: INV-2026-0142  Date: 14-10-2026
+Seller GSTIN: 33ABCDE1234F1Z5   Buyer GSTIN: 29PQRSX5678K1Z2
+Item: Cloud VPS 4GB  HSN: 998315  Taxable: 2,500.00  IGST 18%: 450.00
+Total: 2,950.00

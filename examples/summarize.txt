@@ -1,0 +1,7 @@
+Summarise the following article in 5 bullet points for a busy engineering manager.
+Keep each bullet under 20 words and end with one recommended action.
+
+Article:
+Our team migrated a monolithic Django application to a set of services over six months.
+The biggest wins were independent deployments and faster CI. The biggest costs were
+distributed tracing, data consistency across services, and on-call load during the transition.

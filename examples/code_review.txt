@@ -1,0 +1,6 @@
+You are a senior Python reviewer. Review the code below for bugs, security issues and
+readability. Reply with a numbered list of issues, each with a suggested fix.
+
+def get_user(id):
+    query = "SELECT * FROM users WHERE id = " + str(id)
+    return db.execute(query).fetchone()

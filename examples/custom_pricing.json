@@ -1,0 +1,8 @@
+{
+  "last_updated": "2026-10-18",
+  "currency": "USD",
+  "models": [
+    {"name": "my-local-llm", "provider": "self-hosted", "input": 0.05, "output": 0.10, "encoding": "o200k_base", "exact": false},
+    {"name": "my-finetuned", "provider": "custom",      "input": 1.00, "output": 4.00, "encoding": "o200k_base", "exact": false}
+  ]
+}
