@@ -59,6 +59,9 @@ llmcost models
 
 # Use your own pricing file
 llmcost estimate prompt.txt --pricing my_prices.json
+
+# Show cost in INR (1 USD = 84 INR)
+llmcost estimate prompt.txt -n 10000 -c INR --rate 84
 ```
 
 | Option | Meaning | Default |
@@ -69,6 +72,7 @@ llmcost estimate prompt.txt --pricing my_prices.json
 | `-t, --text` | Prompt text instead of a file | none |
 | `--pricing` | Custom pricing JSON | bundled |
 | `--json` | Machine-readable output | off |
+| `-c, --currency` / `--rate` | Show cost in another currency at the given rate | USD |
 
 ## How it works
 
@@ -108,7 +112,7 @@ pytest -q
 - [ ] Exact token counts via the Anthropic and Gemini token-count APIs (optional API key)
 - [ ] Prompt caching and batch-API discounts
 - [ ] Count tokens for chat-format JSON (`messages` arrays)
-- [ ] INR / other currency output
+- [x] INR / other currency output
 - [ ] Publish to PyPI
 
 ## License
