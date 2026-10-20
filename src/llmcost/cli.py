@@ -39,12 +39,26 @@ def _read_input(file: Optional[str], text: Optional[str]) -> str:
     raise typer.Exit(1)
 
 
-def _money(value: float) -> str:
+SYMBOLS = {"USD": "$", "INR": "₹", "EUR": "€", "GBP": "£", "JPY": "¥"}
+
+
+def _money(value: float, currency: str = "USD") -> str:
+    sym = SYMBOLS.get(currency, f"{currency} ")
     if value == 0:
-        return "$0"
+        return f"{sym}0"
     if value < 0.01:
-        return f"${value:.6f}"
-    return f"${value:,.4f}" if value < 100 else f"${value:,.2f}"
+        return f"{sym}{value:.6f}"
+    return f"{sym}{value:,.4f}" if value < 100 else f"{sym}{value:,.2f}"
+
+
+def _resolve_currency(base: str, currency: Optional[str], rate: Optional[float]) -> tuple[str, float]:
+    """Return (display_currency, multiplier) for converting from the pricing currency."""
+    if currency is None or currency.upper() == base.upper():
+        return base, 1.0
+    if rate is None:
+        err.print(f"[red]--currency {currency.upper()} needs --rate[/red] (1 {base} = RATE {currency.upper()}).")
+        raise typer.Exit(1)
+    return currency.upper(), rate
 
 
 @app.command()
@@ -55,6 +69,8 @@ def estimate(
     output_tokens: int = typer.Option(500, "--output-tokens", "-o", min=0, help="Expected output tokens per request."),
     requests: int = typer.Option(1, "--requests", "-n", min=1, help="Number of requests, e.g. per month."),
     pricing: Optional[Path] = typer.Option(None, "--pricing", help="Custom pricing JSON file."),
+    currency: Optional[str] = typer.Option(None, "--currency", "-c", help="Show costs in another currency, e.g. INR. Needs --rate."),
+    rate: Optional[float] = typer.Option(None, "--rate", min=0.000001, help="Exchange rate: 1 pricing-currency unit = RATE units."),
     as_json: bool = typer.Option(False, "--json", help="Print JSON instead of a table."),
 ) -> None:
     """Estimate cost for a prompt."""
@@ -65,11 +81,12 @@ def estimate(
     except (PricingError, OSError) as exc:
         err.print(f"[red]{exc}[/red]")
         raise typer.Exit(1)
+    display_currency, fx = _resolve_currency(table.currency, currency, rate)
 
     rows = []
     for m in models:
         tokens, used_tokenizer = count_tokens(prompt, m.encoding)
-        per_request = estimate_cost(m, tokens, output_tokens)
+        per_request = estimate_cost(m, tokens, output_tokens) * fx
         rows.append(
             {
                 "model": m.name,
@@ -84,8 +101,11 @@ def estimate(
     rows.sort(key=lambda r: r["total_cost"])
 
     if as_json:
-        print(json.dumps({"requests": requests, "currency": table.currency,
-                          "pricing_updated": table.last_updated, "results": rows}, indent=2))
+        payload = {"requests": requests, "currency": display_currency,
+                   "pricing_updated": table.last_updated, "results": rows}
+        if fx != 1.0:
+            payload["fx_rate"] = {"from": table.currency, "to": display_currency, "rate": fx}
+        print(json.dumps(payload, indent=2))
         return
 
     out = Table(title=f"LLM cost estimate · {requests:,} request(s)", title_justify="left")
@@ -98,10 +118,11 @@ def estimate(
     for r in rows:
         approx = "≈" if r["approximate"] else ""
         out.add_row(r["model"], r["provider"], f"{approx}{r['input_tokens']:,}", f"{r['output_tokens']:,}",
-                    _money(r["cost_per_request"]), _money(r["total_cost"]))
+                    _money(r["cost_per_request"], display_currency), _money(r["total_cost"], display_currency))
     console.print(out)
-    console.print(f"[dim]≈ approximate token count · prices per 1M tokens, updated {table.last_updated} "
-                  f"· verify against provider pricing pages[/dim]")
+    note = f" · converted at 1 {table.currency} = {fx:g} {display_currency}" if fx != 1.0 else ""
+    console.print(f"[dim]≈ approximate token count · prices per 1M tokens, updated {table.last_updated}"
+                  f"{note} · verify against provider pricing pages[/dim]")
 
 
 @app.command()
