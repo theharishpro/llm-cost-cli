@@ -1,0 +1,246 @@
+{
+  "last_updated": "2026-10-18",
+  "currency": "USD",
+  "unit": "per 1M tokens",
+  "models": [
+    {
+      "name": "gpt-4o",
+      "provider": "openai",
+      "input": 2.5,
+      "output": 10.0,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-4o-mini",
+      "provider": "openai",
+      "input": 0.15,
+      "output": 0.6,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-4.1",
+      "provider": "openai",
+      "input": 2.0,
+      "output": 8.0,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-4.1-mini",
+      "provider": "openai",
+      "input": 0.4,
+      "output": 1.6,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "claude-opus-4",
+      "provider": "anthropic",
+      "input": 15.0,
+      "output": 75.0,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-sonnet-4",
+      "provider": "anthropic",
+      "input": 3.0,
+      "output": 15.0,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-haiku-3.5",
+      "provider": "anthropic",
+      "input": 0.8,
+      "output": 4.0,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-2.5-pro",
+      "provider": "google",
+      "input": 1.25,
+      "output": 10.0,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-2.0-flash",
+      "provider": "google",
+      "input": 0.1,
+      "output": 0.4,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gpt-6-astra",
+      "provider": "openai",
+      "input": 10,
+      "output": 50,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-6.1-sol",
+      "provider": "openai",
+      "input": 2,
+      "output": 10,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-6-sol",
+      "provider": "openai",
+      "input": 2,
+      "output": 10,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-6-luna",
+      "provider": "openai",
+      "input": 0.1,
+      "output": 0.5,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-5.5",
+      "provider": "openai",
+      "input": 5,
+      "output": 30,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-5.4",
+      "provider": "openai",
+      "input": 2.5,
+      "output": 15,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-5.4-mini",
+      "provider": "openai",
+      "input": 0.75,
+      "output": 4.5,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "gpt-5.4-nano",
+      "provider": "openai",
+      "input": 0.2,
+      "output": 1.25,
+      "encoding": "o200k_base",
+      "exact": true
+    },
+    {
+      "name": "claude-opus-5.5",
+      "provider": "anthropic",
+      "input": 4,
+      "output": 20,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-sonnet-5.5",
+      "provider": "anthropic",
+      "input": 2,
+      "output": 10,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-haiku-5.5",
+      "provider": "anthropic",
+      "input": 0.1,
+      "output": 0.5,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-opus-4.6",
+      "provider": "anthropic",
+      "input": 5,
+      "output": 25,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-sonnet-4.6",
+      "provider": "anthropic",
+      "input": 3,
+      "output": 15,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "claude-haiku-4.5",
+      "provider": "anthropic",
+      "input": 1,
+      "output": 5,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-3.1-pro-preview",
+      "provider": "google",
+      "input": 2,
+      "output": 12,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-3-flash-preview",
+      "provider": "google",
+      "input": 0.5,
+      "output": 3,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-3.1-flash-lite",
+      "provider": "google",
+      "input": 0.25,
+      "output": 1.5,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-2.5-flash",
+      "provider": "google",
+      "input": 0.3,
+      "output": 2.5,
+      "encoding": "o200k_base",
+      "exact": false
+    },
+    {
+      "name": "gemini-2.5-flash-lite",
+      "provider": "google",
+      "input": 0.1,
+      "output": 0.4,
+      "encoding": "o200k_base",
+      "exact": false
+    }
+  ],
+  "pricing_scope": "Standard pay-as-you-go text token rates, short-context tier where applicable; excludes caching, batch, long-context surcharges, audio, tools, and regional surcharges.",
+  "sources": {
+    "openai": "https://developers.openai.com/api/docs/pricing",
+    "anthropic": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "google": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  "pricing_notes": {
+    "gemini-2.5-pro": "Rates shown apply to prompts up to 200k tokens.",
+    "gemini-3.1-pro-preview": "Rates shown apply to prompts up to 200k tokens.",
+    "claude-haiku-5.5": "$0.10/$0.50 applies to prompts up to 100k tokens; larger prompts have higher prices.",
+    "gpt-6-astra": "Rates shown are short-context tier; long-context requests cost more.",
+    "gpt-6.1-sol": "Rates shown are short-context tier; long-context requests cost more.",
+    "gpt-6-sol": "Rates shown are short-context tier; long-context requests cost more.",
+    "gpt-6-luna": "Rates shown are short-context tier; long-context requests cost more."
+  }
+}

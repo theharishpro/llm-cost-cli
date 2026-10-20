@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-cost-cli"
+version = "0.1.0"
+description = "Estimate token counts and API cost for a prompt across LLM providers."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Harish M" }]
+requires-python = ">=3.9"
+dependencies = ["typer>=0.12", "rich>=13", "tiktoken>=0.7"]
+keywords = ["llm", "openai", "anthropic", "gemini", "tokens", "cost", "cli"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Environment :: Console",
+  "Topic :: Software Development :: Libraries",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+llmcost = "llmcost.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/theharishpro/llm-cost-cli"
+Issues = "https://github.com/theharishpro/llm-cost-cli/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llmcost"]
